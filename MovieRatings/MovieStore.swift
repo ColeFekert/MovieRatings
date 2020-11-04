@@ -22,7 +22,7 @@ class MovieStore {
     }
     
     init() {
-        for _ in 0...5 {
+        for _ in 0..<6 {
             createMovie()
         }
     }

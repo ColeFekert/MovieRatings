@@ -33,8 +33,8 @@ class Movie: NSObject {
     convenience init(random: Bool = false) {
         if random {
             // Arrays to supply random entries
-            let adjectives = ["Shocking", "Insane", "Regular"]
-            let nouns = ["Rambo", "Road", "Terry", "Alien"]
+            let adjectives = ["Shocking", "Insane", "Regular", "Spooky", "Uneventful", "Lame", "Bloody"]
+            let nouns = ["Rambo", "Road", "Terry", "Alien", "Day", "Town", "City", "World"]
             
             let goods = ["give up gambling", "take up hobbiest woodcarving", "call my mom"]
             let bads = ["ruined", "had no effect", "made me revaluate"]
@@ -60,7 +60,7 @@ class Movie: NSObject {
             // Setters
             let randomTitle = "\(randomAdjective) \(randomNoun)"
             let randomRating = Int(arc4random_uniform(10))
-            let randomYear = Int(arc4random_uniform(120)) + 1910
+            let randomYear = Int(arc4random_uniform(100)) + 1920
             let randomWhatWasGood = "This movie made me \(randomGood)."
             let randomWhatWasBad = "However, it also \(randomBad) my life."
             let randomWhoWatched = "\(randomWatcher)"

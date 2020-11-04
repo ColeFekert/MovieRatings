@@ -41,10 +41,24 @@ class MoviesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
         // set the text on the cell with the description of the item that is at the nth index of movies, where n = row this cell will appear in on the tableView
-        let movie = movieStore.allMovies[indexPath.row]
+//        let movie = movieStore.allMovies[indexPath.row]
         
-        cell.textLabel?.text = movie.title
-        cell.detailTextLabel?.text = "\(movie.year)"
+        // TODO: Figure out why some movies arent being printed while others are duplicated
+        
+        
+        
+        for movie in movieStore.allMovies {
+//            print(movie.title) DEBUGGING
+            if (movie.year - (2020 - indexPath.section * 10) <= 9 && movie.year - (2020 - indexPath.section * 10) >= 0) {
+                cell.textLabel?.text = movie.title
+                cell.detailTextLabel?.text = "\(movie.year)"
+            }
+        }
+        
+        
+            
+        
+        
         
         return cell
     }
