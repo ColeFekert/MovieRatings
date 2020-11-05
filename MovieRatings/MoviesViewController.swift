@@ -80,11 +80,33 @@ class MoviesViewController: UITableViewController {
         if editingStyle == .delete {
             let movie = movieStore.allMovies[indexPath.section][indexPath.row]
             
-            // Remove the movie from the store
-            movieStore.removeMovie(movie)
             
-            // Also remove that row from the able view with an animation
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            // Build alert controller
+            let title = "Delete \(movie.title)?"
+            let message = "Are you sure you want to delete this movie?"
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "I changed my mind...", style: .cancel, handler: nil)
+            ac.addAction(cancelAction)
+            
+            var deleteMessages = ["Hasta la vista, baby", "Get off my plane", "Consider that a divorce", "I expect you to die"]
+            
+            var idx = arc4random_uniform(UInt32(deleteMessages.count))
+            let randomTitle = deleteMessages[Int(idx)]
+            
+            let deleteAction = UIAlertAction(title: randomTitle, style: .destructive, handler: {
+                (action) -> Void in
+                // Remove the movie from the store
+                self.movieStore.removeMovie(movie)
+                
+                // Also remove that row from the table view with an animation
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            ac.addAction(deleteAction)
+            
+            // Present the alert controller
+            present(ac, animated: true, completion: nil)
         }
     }
     
