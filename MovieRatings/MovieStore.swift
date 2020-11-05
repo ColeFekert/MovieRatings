@@ -13,6 +13,8 @@ class MovieStore {
 
     var sectionIndexTitles = ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"]
     
+    var numberOfRatings = 11    // 0 - 10
+    
     func removeMovie(_ movie: Movie) {
         if let index = allMovies[movie.rating].index(of: movie) {
             allMovies[movie.rating].remove(at: index)
