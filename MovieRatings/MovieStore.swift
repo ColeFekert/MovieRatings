@@ -13,6 +13,12 @@ class MovieStore {
 
     var sectionIndexTitles = ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"]
     
+    func removeMovie(_ movie: Movie) {
+        if let index = allMovies[movie.rating].index(of: movie) {
+            allMovies[movie.rating].remove(at: index)
+        }
+    }
+    
     @discardableResult
     func createMovie() -> Movie {
         let newMovie = Movie(random: true)
@@ -44,9 +50,9 @@ class MovieStore {
         return newMovie
     }
     
-    init() {
-        for _ in 0..<20 {
-            createMovie()
-        }
-    }
+//    init() {
+//        for _ in 0..<20 {
+//            createMovie()
+//        }
+//    }
 }

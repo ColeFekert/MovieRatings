@@ -61,15 +61,7 @@ class MoviesViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
         
         // set the text on the cell with the description of the item that is at the nth index of movies, where n = row this cell will appear in on the tableView
-//        let movie = movieStore.allMovies[indexPath.row]
-        
-        // TODO: Figure out how to break out of the for loop for each movie in a section - whats happening is that we are looping through every movie and checking if each movie is in the decade, if it is then set the cell's attributes to those of that movie. However, if another movie comes along with the same decade - it'll overwrite that previous movie.
-        
-//        for movie in movieStore.allMovies[indexPath.section] {
-//                cell.textLabel?.text = movie.title
-//                cell.detailTextLabel?.text = "\(movie.year)"
-//        }
-        
+
         if movieStore.allMovies[indexPath.section][indexPath.row].year == 0 {
             cell.textLabel?.text = ""
             cell.detailTextLabel?.text = ""
@@ -79,22 +71,21 @@ class MoviesViewController: UITableViewController {
         
         cell.textLabel?.text = movieStore.allMovies[indexPath.section][indexPath.row].title
         cell.detailTextLabel?.text = "\(movieStore.allMovies[indexPath.section][indexPath.row].year)"
-        
-        
-//        for movie in movieStore.allMovies {
-////            print(movie.title) DEBUGGING
-//            if (movie.year - (2020 - indexPath.section * 10) <= 9 && movie.year - (2020 - indexPath.section * 10) >= 0) {
-//                cell.textLabel?.text = movie.title
-//                cell.detailTextLabel?.text = "\(movie.year)"
-//
-////                return cell       DOESNT WORK
-////                break             DOESNT WORK
-//            }
-//        }
-        
-        
-        
+
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        // If the table view is asking to commit a delete command...
+        if editingStyle == .delete {
+            let movie = movieStore.allMovies[indexPath.section][indexPath.row]
+            
+            // Remove the movie from the store
+            movieStore.removeMovie(movie)
+            
+            // Also remove that row from the able view with an animation
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     // Section Headers
