@@ -14,7 +14,16 @@ class MoviesViewController: UITableViewController {
     
     // Editing and Adding Buttons
     @IBAction func addNewItem(_ sender: UIButton) {
+        // Create a new movie and add it to the store
+        let newMovie = movieStore.createMovie()
         
+        // Figure out where that new item is in the array
+        if let index = movieStore.allMovies[newMovie.rating].index(of: newMovie) {
+            let indexPath = IndexPath(row: index, section: newMovie.rating)
+            
+            // Insert this new row into the table
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        }
     }
     
     @IBAction func toggleEditingMode(_ sender: UIButton) {
