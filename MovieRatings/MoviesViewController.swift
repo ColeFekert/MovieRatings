@@ -12,6 +12,28 @@ import UIKit
 class MoviesViewController: UITableViewController {
     var movieStore: MovieStore!
     
+    // Editing and Adding Buttons
+    @IBAction func addNewItem(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func toggleEditingMode(_ sender: UIButton) {
+        // When currently editing...
+        if isEditing {
+            // Change the text of the button to inform user of the state
+            sender.setTitle("Edit", for: .normal)
+            
+            // Turn off editing mode
+            setEditing(false, animated: true)
+        } else {
+            // Change the text of button to inform user of the state
+            sender.setTitle("Done", for: .normal)
+            
+            // Turn on editing mode
+            setEditing(true, animated: true)
+        }
+    }
+    
     // tableView Functions
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
