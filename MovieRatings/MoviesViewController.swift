@@ -90,7 +90,7 @@ class MoviesViewController: UITableViewController {
             let cancelAction = UIAlertAction(title: "I changed my mind...", style: .cancel, handler: nil)
             ac.addAction(cancelAction)
             
-            var deleteMessages = ["Hasta la vista, baby", "Get off my plane", "Consider that a divorce", "I expect you to die"]
+            var deleteMessages = ["Hasta la vista, baby.", "Get off my plane!", "Consider that a divorce.", "I expect you to die.", "You killed my father, prepare to die.", "See you at the party, Richter!", "Bingo!", "A man's got to know his limitations.", "Adriaaaaaaaaaan!", "Party's Over!", "Game over man! Game over!", "That's right, Dude. 100% certain.", "Certain DEATH!"]
             
             var idx = arc4random_uniform(UInt32(deleteMessages.count))
             let randomTitle = deleteMessages[Int(idx)]
