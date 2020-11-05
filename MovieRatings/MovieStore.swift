@@ -19,6 +19,21 @@ class MovieStore {
         }
     }
     
+    func moveMovie(fromIndexPath: IndexPath, toIndexPath: IndexPath) {
+        if fromIndexPath.section == toIndexPath.section && fromIndexPath.row == toIndexPath.row {
+            return
+        }
+        
+        // Get reference to movie being moved so you can reinsert it
+        let movedMovie = allMovies[fromIndexPath.section][fromIndexPath.row]
+        
+        // Remove movie from array
+        allMovies[fromIndexPath.section].remove(at: fromIndexPath.row)
+        
+        // Insert item in array at new location
+        allMovies[toIndexPath.section].insert(movedMovie, at: toIndexPath.row)
+    }
+    
     @discardableResult
     func createMovie() -> Movie {
         let newMovie = Movie(random: true)

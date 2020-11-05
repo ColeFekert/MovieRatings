@@ -88,6 +88,11 @@ class MoviesViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // Update the model
+        movieStore.moveMovie(fromIndexPath: sourceIndexPath, toIndexPath: destinationIndexPath)
+    }
+    
     // Section Headers
     
     override func numberOfSections(in tableView: UITableView) -> Int {
