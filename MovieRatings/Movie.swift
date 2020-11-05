@@ -68,7 +68,7 @@ class Movie: NSObject {
             // Initializer
             self.init(title: randomTitle, rating: randomRating, year: randomYear, whatWasGood: randomWhatWasGood, whatWasBad: randomWhatWasBad, whoWatched: randomWhoWatched)
         } else {
-            self.init(title: "Default", rating: 0, year: 0, whatWasGood: "Default", whatWasBad: "Default", whoWatched: "Defacto")
+            self.init(title: "", rating: 0, year: 0, whatWasGood: "Sample text.", whatWasBad: "Sample text.", whoWatched: "")
         }
     }
 }
