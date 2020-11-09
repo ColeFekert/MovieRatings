@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		116145FB2558B25200BEE53A /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116145FA2558B25200BEE53A /* MovieCell.swift */; };
+		116146032558D56300BEE53A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116146022558D56200BEE53A /* DetailViewController.swift */; };
 		119477CA25523D3900C8E528 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119477C925523D3900C8E528 /* AppDelegate.swift */; };
 		119477CC25523D3900C8E528 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119477CB25523D3900C8E528 /* SceneDelegate.swift */; };
 		119477CE25523D3900C8E528 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119477CD25523D3900C8E528 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		116145FA2558B25200BEE53A /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		116146022558D56200BEE53A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		119477C625523D3900C8E528 /* MovieRatings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRatings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		119477C925523D3900C8E528 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		119477CB25523D3900C8E528 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				1194780125523E5A00C8E528 /* MovieStore.swift */,
 				1194780625523E7200C8E528 /* MoviesViewController.swift */,
 				116145FA2558B25200BEE53A /* MovieCell.swift */,
+				116146022558D56200BEE53A /* DetailViewController.swift */,
 				119477CF25523D3900C8E528 /* Main.storyboard */,
 				119477D225523D4400C8E528 /* Assets.xcassets */,
 				119477D425523D4400C8E528 /* LaunchScreen.storyboard */,
@@ -277,6 +280,7 @@
 				119477CC25523D3900C8E528 /* SceneDelegate.swift in Sources */,
 				1194780225523E5A00C8E528 /* MovieStore.swift in Sources */,
 				1194780725523E7200C8E528 /* MoviesViewController.swift in Sources */,
+				116146032558D56300BEE53A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
