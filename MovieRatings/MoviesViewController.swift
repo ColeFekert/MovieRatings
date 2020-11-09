@@ -18,8 +18,8 @@ class MoviesViewController: UITableViewController {
         let newMovie = movieStore.createMovie()
         
         // Figure out where that new item is in the array
-        if let index = movieStore.allMovies[newMovie.rating].index(of: newMovie) {
-            let indexPath = IndexPath(row: index, section: newMovie.rating)
+        if let index = movieStore.allMovies[(10 - newMovie.rating)].index(of: newMovie) {
+            let indexPath = IndexPath(row: index, section: (10 - newMovie.rating))
             
             // Insert this new row into the table
             tableView.insertRows(at: [indexPath], with: .automatic)
@@ -58,19 +58,26 @@ class MoviesViewController: UITableViewController {
         // let cell = UITableViewCell(style: .value1, reuseIdentifier: "UITableViewCell")
         
         // get a new or recycled cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         // set the text on the cell with the description of the item that is at the nth index of movies, where n = row this cell will appear in on the tableView
 
         if movieStore.allMovies[indexPath.section][indexPath.row].year == 0 {
-            cell.textLabel?.text = ""
-            cell.detailTextLabel?.text = ""
+            cell.titleLabel.text = ""
+            cell.yearLabel.text = ""
+            cell.dateLabel.text = "01/01/1970"
             
             return cell
         }
         
-        cell.textLabel?.text = movieStore.allMovies[indexPath.section][indexPath.row].title
-        cell.detailTextLabel?.text = "\(movieStore.allMovies[indexPath.section][indexPath.row].year)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        let dateString = dateFormatter.string(from: (movieStore.allMovies[indexPath.section][indexPath.row].dateCreated))
+        
+        cell.titleLabel.text = movieStore.allMovies[indexPath.section][indexPath.row].title
+        cell.yearLabel.text = "\(movieStore.allMovies[indexPath.section][indexPath.row].year)"
+        cell.dateLabel.text = "\(dateString)"
 
         return cell
     }
@@ -123,5 +130,13 @@ class MoviesViewController: UITableViewController {
     
     override func sectionIndexTitles(for: UITableView) -> [String]? {
         return movieStore.sectionIndexTitles
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Get the height of the status bar
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 65
     }
 }

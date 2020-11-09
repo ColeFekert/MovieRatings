@@ -59,7 +59,7 @@ class Movie: NSObject {
             
             // Setters
             let randomTitle = "\(randomAdjective) \(randomNoun)"
-            let randomRating = Int(arc4random_uniform(10))
+            let randomRating = Int(arc4random_uniform(11))
             let randomYear = Int(arc4random_uniform(100)) + 1920
             let randomWhatWasGood = "This movie made me \(randomGood)."
             let randomWhatWasBad = "However, it also \(randomBad) my life."

@@ -16,8 +16,8 @@ class MovieStore {
     var numberOfRatings = 11    // 0 - 10
     
     func removeMovie(_ movie: Movie) {
-        if let index = allMovies[movie.rating].index(of: movie) {
-            allMovies[movie.rating].remove(at: index)
+        if let index = allMovies[(10 - movie.rating)].index(of: movie) {
+            allMovies[(10 - movie.rating)].remove(at: index)
         }
     }
     
@@ -41,27 +41,27 @@ class MovieStore {
         let newMovie = Movie(random: true)
         
         if newMovie.rating == 10 {
-            allMovies[10].append(newMovie)
+            allMovies[0].append(newMovie)
         } else if newMovie.rating >= 9 {
-            allMovies[9].append(newMovie)
+            allMovies[1].append(newMovie)
         } else if newMovie.rating >= 8 {
-            allMovies[8].append(newMovie)
+            allMovies[2].append(newMovie)
         } else if newMovie.rating >= 7 {
-            allMovies[7].append(newMovie)
+            allMovies[3].append(newMovie)
         } else if newMovie.rating >= 6 {
-            allMovies[6].append(newMovie)
+            allMovies[4].append(newMovie)
         } else if newMovie.rating >= 5 {
             allMovies[5].append(newMovie)
         } else if newMovie.rating >= 4 {
-            allMovies[4].append(newMovie)
+            allMovies[6].append(newMovie)
         } else if newMovie.rating >= 3 {
-            allMovies[3].append(newMovie)
+            allMovies[7].append(newMovie)
         } else if newMovie.rating >= 2 {
-            allMovies[2].append(newMovie)
+            allMovies[8].append(newMovie)
         } else if newMovie.rating >= 1 {
-            allMovies[1].append(newMovie)
+            allMovies[9].append(newMovie)
         } else if newMovie.rating >= 0 {
-            allMovies[0].append(newMovie)
+            allMovies[10].append(newMovie)
         }
         
         return newMovie
