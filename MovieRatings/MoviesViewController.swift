@@ -62,7 +62,9 @@ class MoviesViewController: UITableViewController {
         
         // set the text on the cell with the description of the item that is at the nth index of movies, where n = row this cell will appear in on the tableView
 
-        if movieStore.allMovies[indexPath.section][indexPath.row].year == 0 {
+        let movie = movieStore.allMovies[indexPath.section][indexPath.row]
+        
+        if movie.year == 0 {
             cell.titleLabel.text = ""
             cell.yearLabel.text = ""
             cell.dateLabel.text = "01/01/1970"
@@ -73,10 +75,34 @@ class MoviesViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none
-        let dateString = dateFormatter.string(from: (movieStore.allMovies[indexPath.section][indexPath.row].dateCreated))
+        let dateString = dateFormatter.string(from: (movie.dateCreated))
         
-        cell.titleLabel.text = movieStore.allMovies[indexPath.section][indexPath.row].title
-        cell.yearLabel.text = "\(movieStore.allMovies[indexPath.section][indexPath.row].year)"
+        cell.titleLabel.text = movie.title
+        cell.yearLabel.text = "\(movie.year)"
+        if (movie.year < 1930) {
+            cell.yearLabel.textColor = UIColor(red: 168/255, green: 122/255, blue: 52/255, alpha: 1.0)
+        } else if (movie.year < 1940) {
+            cell.yearLabel.textColor = UIColor(red: 210/255, green: 126/255, blue: 0/255, alpha: 1.0)
+        } else if (movie.year < 1950) {
+            cell.yearLabel.textColor = UIColor(red: 255/255, green: 153/255, blue: 0/255, alpha: 1.0)
+        } else if (movie.year < 1960) {
+            cell.yearLabel.textColor = UIColor(red: 192/255, green: 178/255, blue: 63/255, alpha: 1.0)
+        } else if (movie.year < 1970) {
+            cell.yearLabel.textColor = UIColor(red: 128/255, green: 204/255, blue: 127/255, alpha: 1.0)
+        } else if (movie.year < 1980) {
+            cell.yearLabel.textColor = UIColor(red: 64/255, green: 229/255, blue: 191/255, alpha: 1.0)
+        } else if (movie.year < 1990) {
+            cell.yearLabel.textColor = UIColor(red: 0/255, green: 255/255, blue: 255/255, alpha: 1.0)
+        } else if (movie.year < 2000) {
+            cell.yearLabel.textColor = UIColor(red: 63/255, green: 192/255, blue: 255/255, alpha: 1.0)
+        } else if (movie.year < 2010) {
+            cell.yearLabel.textColor = UIColor(red: 127/255, green: 128/255, blue: 255/255, alpha: 1.0)
+        } else if (movie.year < 2020) {
+            cell.yearLabel.textColor = UIColor(red: 191/255, green: 64/255, blue: 255/255, alpha: 1.0)
+        } else if (movie.year < 2030) {
+            cell.yearLabel.textColor = UIColor(red: 255/255, green: 0/255, blue: 255/255, alpha: 1.0)
+        }
+        
         cell.dateLabel.text = "\(dateString)"
 
         return cell
