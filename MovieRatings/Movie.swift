@@ -17,6 +17,8 @@ class Movie: NSObject {
     
     let dateCreated: Date
     
+    var ratingChanged: Bool
+    
     init(title: String, rating: Int, year: Int, whatWasGood: String?, whatWasBad: String?, whoWatched: String) {
         self.title = title
         self.rating = rating
@@ -26,6 +28,8 @@ class Movie: NSObject {
         self.whoWatched = whoWatched
         
         self.dateCreated = Date()
+        
+        self.ratingChanged = false
         
         super.init()
     }
@@ -70,5 +74,15 @@ class Movie: NSObject {
         } else {
             self.init(title: "", rating: 0, year: 0, whatWasGood: "Sample text.", whatWasBad: "Sample text.", whoWatched: "")
         }
+    }
+    
+    func changeRating(desiredRating: Int) {
+        ratingChanged = true
+        
+        rating = desiredRating
+    }
+    
+    func finishedChangingRating() {
+        ratingChanged = false
     }
 }

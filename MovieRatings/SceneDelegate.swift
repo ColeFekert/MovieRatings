@@ -18,11 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         // Create an instance of MovieStore
-        let movieStore = MovieStore()
+        let movieStore = appDelegate.movieStore
         
         // Access the MoviesViewController and set its movie store
-        let moviesController = window!.rootViewController as! MoviesViewController
+        let navController = window!.rootViewController as! UINavigationController
+        let moviesController = navController.topViewController as! MoviesViewController
         moviesController.movieStore = movieStore
     }
 

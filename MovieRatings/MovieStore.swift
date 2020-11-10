@@ -29,11 +29,29 @@ class MovieStore {
         // Get reference to movie being moved so you can reinsert it
         let movedMovie = allMovies[fromIndexPath.section][fromIndexPath.row]
         
+        // Change the rating
+        movedMovie.rating = 10 - toIndexPath.section
+        
         // Remove movie from array
         allMovies[fromIndexPath.section].remove(at: fromIndexPath.row)
         
         // Insert item in array at new location
         allMovies[toIndexPath.section].insert(movedMovie, at: toIndexPath.row)
+    }
+    
+    func moveMovieTop(fromIndexPath: IndexPath, toIndexPath: IndexPath) {
+        if fromIndexPath.section == toIndexPath.section {
+            return
+        }
+        
+        // Get reference to movie being moved so you can reinsert it
+        let movedMovie = allMovies[fromIndexPath.section][fromIndexPath.row]
+        
+        // Remove movie from array
+        allMovies[fromIndexPath.section].remove(at: fromIndexPath.row)
+        
+        // Insert item in array at front
+        allMovies[10 - toIndexPath.section].insert(movedMovie, at: 0)
     }
     
     @discardableResult

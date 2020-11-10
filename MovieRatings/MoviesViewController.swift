@@ -64,6 +64,17 @@ class MoviesViewController: UITableViewController {
 
         let movie = movieStore.allMovies[indexPath.section][indexPath.row]
         
+        if movie.ratingChanged {
+            var targetIndexPath: IndexPath = indexPath
+            targetIndexPath.section = movie.rating
+            
+            movieStore.moveMovieTop(fromIndexPath: indexPath, toIndexPath: targetIndexPath)
+            
+            movie.finishedChangingRating()
+            
+            tableView.reloadData()
+        }
+        
         if movie.year == 0 {
             cell.titleLabel.text = ""
             cell.yearLabel.text = ""
@@ -183,5 +194,11 @@ class MoviesViewController: UITableViewController {
         default:
             preconditionFailure("Unexpected segue identifier.")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 }
