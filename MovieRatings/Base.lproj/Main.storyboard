@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oio-CD-GHh">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -32,6 +32,9 @@
                                                 <rect key="frame" x="57" y="0.0" width="239" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="Fjd-hJ-yzs"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -48,6 +51,9 @@
                                                 <rect key="frame" x="57" y="0.0" width="239" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="fI0-2h-dXS"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -64,6 +70,9 @@
                                                 <rect key="frame" x="57" y="0.0" width="239" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="L4q-Hq-a3i"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -83,6 +92,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="S5E-tc-XZy"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -102,6 +114,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="2aJ-O6-4Ze"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -118,6 +133,9 @@
                                                 <rect key="frame" x="0.0" y="28.5" width="296" height="62"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="gl2-3w-OEw" id="wRe-Zi-H9P"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -137,12 +155,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dph-WR-50q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ccK-U5-Uas" firstAttribute="leading" secondItem="Dph-WR-50q" secondAttribute="leading" constant="12" id="4jm-nO-DVv"/>
                             <constraint firstItem="Dph-WR-50q" firstAttribute="bottom" secondItem="ccK-U5-Uas" secondAttribute="bottom" constant="8" id="Ahy-Zi-zRg"/>
                             <constraint firstItem="ccK-U5-Uas" firstAttribute="top" secondItem="Dph-WR-50q" secondAttribute="top" constant="8" id="Ipf-NK-aG4"/>
                             <constraint firstItem="Dph-WR-50q" firstAttribute="trailing" secondItem="ccK-U5-Uas" secondAttribute="trailing" constant="12" id="hfd-Od-80p"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CWX-yp-LVA" appends="YES" id="3fY-Ge-sYr"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="3q3-X9-mAi"/>
                     <connections>
@@ -156,6 +178,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8H9-Q2-t27" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="CWX-yp-LVA">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="gl2-3w-OEw" id="n6h-Vt-AXG"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1503.75" y="21.12676056338028"/>
         </scene>

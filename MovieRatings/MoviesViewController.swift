@@ -88,6 +88,7 @@ class MoviesViewController: UITableViewController {
         dateFormatter.timeStyle = .none
         let dateString = dateFormatter.string(from: (movie.dateCreated))
         
+        
         cell.titleLabel.text = movie.title
         cell.yearLabel.text = "\(movie.year)"
         if (movie.year < 1930) {
@@ -114,7 +115,20 @@ class MoviesViewController: UITableViewController {
             cell.yearLabel.textColor = UIColor(red: 255/255, green: 0/255, blue: 255/255, alpha: 1.0)
         }
         
+        
         cell.dateLabel.text = "\(dateString)"
+        
+//        let dateString = dateFormatter.string(from: (movie.dateCreated))
+//        let now = Date()
+//        
+//        let dateAge = DateInterval(start: movie.dateCreated, end: now)
+//        let dateAgeSeconds = Int(dateAge.duration)
+//        
+//        let maxFadeTime = 60
+//        
+//        let dateAgeColor = ((dateAgeSeconds / maxFadeTime) * 255)
+//        
+//        cell.dateLabel.textColor = UIColor(red: CGFloat(dateAgeColor / 255), green: 0.5, blue: 0.5, alpha: 1.0)
 
         return cell
     }

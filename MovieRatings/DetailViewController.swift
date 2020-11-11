@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var titleField: UITextField!
     @IBOutlet var yearField: UITextField!
     @IBOutlet var ratingField: UITextField!
@@ -18,6 +18,10 @@ class DetailViewController: UIViewController {
     @IBOutlet var dateLabel: UILabel!
     
     var movie: Movie!
+    
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,6 +50,9 @@ class DetailViewController: UIViewController {
             return formatter
         }()
         
+        // Clear first responder (keyboard)
+        view.endEditing(true)
+        
         // Save changes to movie
         movie.title = titleField.text ?? ""
         
@@ -64,6 +71,14 @@ class DetailViewController: UIViewController {
         movie.whatWasBad = whatsBadField.text ?? ""
         movie.whoWatched = whoWatchedField.text ?? ""
         
-        
+        // TODO: Implement a way to track revisions.
+        //       Maybe this could be made by making the dateCreated into an array of Movies called revisions. The latest one would be displayed in the place that the dateCreated is currently displayed. When the user taps on the displayed date it would break out into a modal where the user can select a date and see the different revisions.
+        //  Would have to ask the user to save or discard their data after changing anything.
+        //  It would be useful to display the changed strings in Who's watched with the revision date.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
