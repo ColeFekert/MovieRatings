@@ -13,7 +13,7 @@ class MoviesViewController: UITableViewController {
     var movieStore: MovieStore!
     
     // Editing and Adding Buttons
-    @IBAction func addNewItem(_ sender: UIButton) {
+    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         // Create a new movie and add it to the store
         let newMovie = movieStore.createMovie()
         
@@ -23,23 +23,6 @@ class MoviesViewController: UITableViewController {
             
             // Insert this new row into the table
             tableView.insertRows(at: [indexPath], with: .automatic)
-        }
-    }
-    
-    @IBAction func toggleEditingMode(_ sender: UIButton) {
-        // When currently editing...
-        if isEditing {
-            // Change the text of the button to inform user of the state
-            sender.setTitle("Edit", for: .normal)
-            
-            // Turn off editing mode
-            setEditing(false, animated: true)
-        } else {
-            // Change the text of button to inform user of the state
-            sender.setTitle("Done", for: .normal)
-            
-            // Turn on editing mode
-            setEditing(true, animated: true)
         }
     }
     
@@ -118,17 +101,43 @@ class MoviesViewController: UITableViewController {
         
         cell.dateLabel.text = "\(dateString)"
         
-//        let dateString = dateFormatter.string(from: (movie.dateCreated))
-//        let now = Date()
-//        
-//        let dateAge = DateInterval(start: movie.dateCreated, end: now)
-//        let dateAgeSeconds = Int(dateAge.duration)
-//        
-//        let maxFadeTime = 60
-//        
-//        let dateAgeColor = ((dateAgeSeconds / maxFadeTime) * 255)
-//        
-//        cell.dateLabel.textColor = UIColor(red: CGFloat(dateAgeColor / 255), green: 0.5, blue: 0.5, alpha: 1.0)
+        let now = Date()
+        
+        let timeSpanFromDate = DateFormatter()
+        timeSpanFromDate.dateFormat = "D"
+        
+        let currentDayOfYear = timeSpanFromDate.string(from: now)
+        let movieDayOfYear = timeSpanFromDate.string(from: movie.dateCreated)
+        
+        timeSpanFromDate.dateFormat = "YYYY"
+        
+        let currentYear = timeSpanFromDate.string(from: now)
+        let movieYear = timeSpanFromDate.string(from: movie.dateCreated)
+        
+        let currentYearInt = Int(currentYear) ?? 2020
+        let movieYearInt = Int(movieYear) ?? 1234
+        let currentDayOfYearInt = Int(currentDayOfYear) ?? 100
+        let movieDayOfYearInt = Int(movieDayOfYear) ?? 100
+        
+        if (movieYearInt == currentYearInt) {
+            if (movieDayOfYearInt == currentDayOfYearInt) {
+                cell.dateLabel.textColor = UIColor.systemIndigo
+            } else if (currentDayOfYearInt - movieDayOfYearInt > 14) {
+                cell.dateLabel.textColor = UIColor.purple
+            } else if (currentYearInt - movieYearInt == 1) {
+                cell.dateLabel.textColor = UIColor.blue
+            } else if (currentYearInt - movieYearInt == 2) {
+                cell.dateLabel.textColor = UIColor.green
+            } else if (currentYearInt - movieYearInt == 3) {
+                cell.dateLabel.textColor = UIColor.yellow
+            } else if (currentYearInt - movieYearInt == 4) {
+                cell.dateLabel.textColor = UIColor.orange
+            } else if (currentYearInt - movieYearInt == 5) {
+                cell.dateLabel.textColor = UIColor.red
+            }
+        }
+        
+//        cell.dateLabel.textColor = UIColor(
 
         return cell
     }
@@ -214,5 +223,11 @@ class MoviesViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
+    }
+    
+    override required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
 }

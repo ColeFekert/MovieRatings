@@ -17,7 +17,11 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var whoWatchedField: UITextField!
     @IBOutlet var dateLabel: UILabel!
     
-    var movie: Movie!
+    var movie: Movie! {
+        didSet {
+            navigationItem.title = movie.title
+        }
+    }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
