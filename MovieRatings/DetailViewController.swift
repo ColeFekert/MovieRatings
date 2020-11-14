@@ -16,6 +16,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var whatsBadField: UITextField!
     @IBOutlet var whoWatchedField: UITextField!
     @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
     
     var movie: Movie! {
         didSet {
