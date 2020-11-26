@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Movie: NSObject {
+class Movie: NSObject, NSCoding {
     var title: String
     var rating: Int
     var year: Int
@@ -20,6 +20,30 @@ class Movie: NSObject {
     let movieKey: String
     
     var ratingChanged: Bool
+    
+    required init(coder aDecoder: NSCoder) {
+        title = aDecoder.decodeObject(forKey: "title") as! String
+        rating = aDecoder.decodeObject(forKey: "rating") as! Int
+        year = aDecoder.decodeObject(forKey: "year") as! Int
+        whatWasGood = aDecoder.decodeObject(forKey: "whatWasGood") as! String
+        whatWasBad = aDecoder.decodeObject(forKey: "whatWasBad") as! String
+        whoWatched = aDecoder.decodeObject(forKey: "whoWatched") as! String
+        dateCreated = aDecoder.decodeObject(forKey: "dateCreated") as! Date
+        movieKey = aDecoder.decodeObject(forKey: "movieKey") as! String
+        ratingChanged = aDecoder.decodeObject(forKey: "ratingChanged") as! Bool
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(rating, forKey: "rating")
+        aCoder.encode(year, forKey: "year")
+        aCoder.encode(whatWasGood, forKey: "whatWasGood")
+        aCoder.encode(whatWasBad, forKey: "whatWasBad")
+        aCoder.encode(whoWatched, forKey: "whoWatched")
+        aCoder.encode(dateCreated, forKey: "dateCreated")
+        aCoder.encode(movieKey, forKey: "movieKey")
+        aCoder.encode(ratingChanged, forKey: "ratingChanged")
+    }
     
     init(title: String, rating: Int, year: Int, whatWasGood: String?, whatWasBad: String?, whoWatched: String) {
         self.title = title
