@@ -36,11 +36,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let imagePicker = UIImagePickerController()
         
         // If the device has a camera, take a picture; otherwise, just pick from the photo library
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-        } else {
-            imagePicker.sourceType = .photoLibrary
-        }
+//        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//            imagePicker.sourceType = .camera
+//        } else {
+//            imagePicker.sourceType = .photoLibrary
+//        }
+        
+        // Doesn't really make sense for the user to take a picture and have that as the image. They'll most likely download an image and use that.
+        imagePicker.sourceType = .photoLibrary
         
         imagePicker.delegate = self
         
