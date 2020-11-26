@@ -10,12 +10,16 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var movieStore: MovieStore!
+    var imageStore: ImageStore!
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         movieStore = MovieStore()
+        
+        imageStore = ImageStore()
+        
         return true
     }
 

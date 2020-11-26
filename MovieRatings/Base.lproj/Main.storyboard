@@ -179,6 +179,11 @@
                                             <action selector="takePicture:" destination="gl2-3w-OEw" id="K8d-KR-Aha"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="stop" id="q8l-L1-3S0">
+                                        <connections>
+                                            <action selector="removePicture:" destination="gl2-3w-OEw" id="FK9-T8-p6W"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

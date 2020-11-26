@@ -23,10 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create an instance of MovieStore
         let movieStore = appDelegate.movieStore
         
-        // Access the MoviesViewController and set its movie store
+        // Create an instance of ImageStore
+        let imageStore = appDelegate.imageStore
+        
+        // Access the MoviesViewController and set its movie and image store
         let navController = window!.rootViewController as! UINavigationController
         let moviesController = navController.topViewController as! MoviesViewController
         moviesController.movieStore = movieStore
+        moviesController.imageStore = imageStore
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

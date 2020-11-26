@@ -11,6 +11,7 @@ import UIKit
 
 class MoviesViewController: UITableViewController {
     var movieStore: MovieStore!
+    var imageStore: ImageStore!
     
     // Editing and Adding Buttons
     @IBAction func addNewItem(_ sender: UIBarButtonItem) {
@@ -167,6 +168,9 @@ class MoviesViewController: UITableViewController {
                 // Remove the movie from the store
                 self.movieStore.removeMovie(movie)
                 
+                // Remove the movie's image from the image store
+                self.imageStore.deleteImage(forKey: movie.movieKey)
+                
                 // Also remove that row from the table view with an animation
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             })
@@ -208,10 +212,11 @@ class MoviesViewController: UITableViewController {
             if let section = tableView.indexPathForSelectedRow?.section {
                 if let row =
                     tableView.indexPathForSelectedRow?.row {
-                        // Get the item associated with this row and pass it along
-                        let movie = movieStore.allMovies[section][row]
-                        let detailViewController = segue.destination as! DetailViewController
-                        detailViewController.movie = movie
+                    // Get the item associated with this row and pass it along
+                    let movie = movieStore.allMovies[section][row]
+                    let detailViewController = segue.destination as! DetailViewController
+                    detailViewController.movie = movie
+                    detailViewController.imageStore = imageStore
                 }
             }
         default:

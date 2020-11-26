@@ -24,6 +24,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         }
     }
     
+    var imageStore: ImageStore!
+    
+    @IBAction func removePicture(_ sender: UIBarButtonItem) {
+        imageView.image = nil
+        
+        imageStore.deleteImage(forKey: movie.movieKey)
+    }
+    
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
         let imagePicker = UIImagePickerController()
         
@@ -47,6 +55,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Get picked image from info dictionary
         if let image = info[.originalImage] as? UIImage {
+            // Store the image in the ImageStore for the movie's key
+            imageStore.setImage(image, forKey: movie.movieKey)
+            
             // Put that image on the screen in the image view
             imageView.image = image
         }
@@ -71,6 +82,13 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         let dateString = dateFormatter.string(from: (movie.dateCreated))
         
         dateLabel.text = dateString
+        
+        // Get the movieKey
+        let key = movie.movieKey
+        
+        // If there's an associated image with the movie, display it on the image view
+        let imageToDisplay = imageStore.image(forKey: key)
+        imageView.image = imageToDisplay
     }
     
     override func viewWillDisappear(_ animated: Bool) {

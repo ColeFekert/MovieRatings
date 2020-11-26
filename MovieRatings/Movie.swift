@@ -17,6 +17,8 @@ class Movie: NSObject {
     
     let dateCreated: Date
     
+    let movieKey: String
+    
     var ratingChanged: Bool
     
     init(title: String, rating: Int, year: Int, whatWasGood: String?, whatWasBad: String?, whoWatched: String) {
@@ -28,6 +30,8 @@ class Movie: NSObject {
         self.whoWatched = whoWatched
         
         self.dateCreated = Date()
+        
+        self.movieKey = UUID().uuidString
         
         self.ratingChanged = false
         

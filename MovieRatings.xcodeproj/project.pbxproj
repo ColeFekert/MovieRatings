@@ -20,6 +20,7 @@
 		119477FD25523E2E00C8E528 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119477FC25523E2E00C8E528 /* Movie.swift */; };
 		1194780225523E5A00C8E528 /* MovieStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194780125523E5A00C8E528 /* MovieStore.swift */; };
 		1194780725523E7200C8E528 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1194780625523E7200C8E528 /* MoviesViewController.swift */; };
+		11A728FC256F400B0020E559 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A728FB256F400B0020E559 /* ImageStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		119477FC25523E2E00C8E528 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		1194780125523E5A00C8E528 /* MovieStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStore.swift; sourceTree = "<group>"; };
 		1194780625523E7200C8E528 /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
+		11A728FB256F400B0020E559 /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				116145FA2558B25200BEE53A /* MovieCell.swift */,
 				116146022558D56200BEE53A /* DetailViewController.swift */,
 				119477CF25523D3900C8E528 /* Main.storyboard */,
+				11A728FB256F400B0020E559 /* ImageStore.swift */,
 				119477D225523D4400C8E528 /* Assets.xcassets */,
 				119477D425523D4400C8E528 /* LaunchScreen.storyboard */,
 				119477D725523D4400C8E528 /* Info.plist */,
@@ -278,6 +281,7 @@
 				119477CA25523D3900C8E528 /* AppDelegate.swift in Sources */,
 				119477FD25523E2E00C8E528 /* Movie.swift in Sources */,
 				119477CC25523D3900C8E528 /* SceneDelegate.swift in Sources */,
+				11A728FC256F400B0020E559 /* ImageStore.swift in Sources */,
 				1194780225523E5A00C8E528 /* MovieStore.swift in Sources */,
 				1194780725523E7200C8E528 /* MoviesViewController.swift in Sources */,
 				116146032558D56300BEE53A /* DetailViewController.swift in Sources */,
