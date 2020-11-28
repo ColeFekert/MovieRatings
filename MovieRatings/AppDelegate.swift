@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Create movieStore and imageStore here
         movieStore = MovieStore()
-        
         imageStore = ImageStore()
+        
+        print("Created data stores!")
         
         return true
     }

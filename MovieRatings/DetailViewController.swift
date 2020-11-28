@@ -63,6 +63,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
             
             // Put that image on the screen in the image view
             imageView.image = image
+            
+            print("Added Image")
         }
         
         // Take image picker off the screen - you must call this dismiss method

@@ -23,14 +23,14 @@ class Movie: NSObject, NSCoding {
     
     required init(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObject(forKey: "title") as! String
-        rating = aDecoder.decodeObject(forKey: "rating") as! Int
-        year = aDecoder.decodeObject(forKey: "year") as! Int
+        rating = aDecoder.decodeInteger(forKey: "rating") as! Int
+        year = aDecoder.decodeInteger(forKey: "year") as! Int
         whatWasGood = aDecoder.decodeObject(forKey: "whatWasGood") as! String
         whatWasBad = aDecoder.decodeObject(forKey: "whatWasBad") as! String
         whoWatched = aDecoder.decodeObject(forKey: "whoWatched") as! String
         dateCreated = aDecoder.decodeObject(forKey: "dateCreated") as! Date
         movieKey = aDecoder.decodeObject(forKey: "movieKey") as! String
-        ratingChanged = aDecoder.decodeObject(forKey: "ratingChanged") as! Bool
+        ratingChanged = aDecoder.decodeBool(forKey: "ratingChanged") as! Bool
     }
     
     func encode(with aCoder: NSCoder) {
@@ -91,7 +91,7 @@ class Movie: NSObject, NSCoding {
             
             // Setters
             let randomTitle = "\(randomAdjective) \(randomNoun)"
-            let randomRating = Int(arc4random_uniform(11))
+            let randomRating = 10
             let randomYear = Int(arc4random_uniform(100)) + 1920
             let randomWhatWasGood = "This movie made me \(randomGood)."
             let randomWhatWasBad = "However, it also \(randomBad) my life."
@@ -100,7 +100,7 @@ class Movie: NSObject, NSCoding {
             // Initializer
             self.init(title: randomTitle, rating: randomRating, year: randomYear, whatWasGood: randomWhatWasGood, whatWasBad: randomWhatWasBad, whoWatched: randomWhoWatched)
         } else {
-            self.init(title: "", rating: 0, year: 0, whatWasGood: "Sample text.", whatWasBad: "Sample text.", whoWatched: "")
+            self.init(title: "", rating: 10, year: 0, whatWasGood: "Sample text.", whatWasBad: "Sample text.", whoWatched: "")
         }
     }
     

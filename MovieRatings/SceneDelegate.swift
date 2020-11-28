@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+//    let movieStore = MovieStore()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -48,6 +49,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        
+//        let success = movieStore.saveChanges()
+//        if (success) {
+//            print("Saved all movies.")
+//        } else {
+//            print("Failed to save movies.")
+//        }
+        
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+        let movieStore = appDelegate.movieStore
+
+        let success = movieStore!.saveChanges()
+
+        if (success) {
+            print("Saved all movies.")
+        } else {
+            print("Saving of movies failed.")
+        }
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

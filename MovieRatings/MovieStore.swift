@@ -9,11 +9,25 @@ import Foundation
 import UIKit
 
 class MovieStore {
-    var allMovies = [[Movie]](repeating: [], count: 11)
+    // OLD WAY of initializing blank MovieStore
+//    var allMovies = [[Movie]](repeating: [], count: 11)
+    var allMovies: [[Movie]]!
+    
+    let movieArchiveURL: URL = {
+        let documentsDirectories = FileManager.default.urls(for:.documentDirectory, in: .userDomainMask)
+        let documentDirectory = documentsDirectories.first!
+        
+        return documentDirectory.appendingPathComponent("movies.archive")
+    }()
 
     var sectionIndexTitles = ["10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"]
     
     var numberOfRatings = 11    // 0 - 10
+    
+    func saveChanges() -> Bool {
+        print("Saving items to: \(movieArchiveURL.path)")
+        return NSKeyedArchiver.archiveRootObject(allMovies, toFile: movieArchiveURL.path)
+    }
     
     func removeMovie(_ movie: Movie) {
         if let index = allMovies[(10 - movie.rating)].index(of: movie) {
@@ -85,9 +99,22 @@ class MovieStore {
         return newMovie
     }
     
-//    init() {
+    init() {
+        print("Start init() for MovieStore...")
+        
+        do {
+            let data = try Data(contentsOf: movieArchiveURL)
+            if let archivedMovies = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [[Movie]] {
+                allMovies = archivedMovies
+            }
+        } catch {
+            // Default behavior - create a blank movieStore.
+            allMovies = [[Movie]](repeating: [], count: 11)
+        }
+        
+        
 //        for _ in 0..<20 {
 //            createMovie()
 //        }
-//    }
+    }
 }
