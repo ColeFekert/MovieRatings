@@ -25,16 +25,42 @@ class MoviesViewController: UITableViewController {
             // Insert this new row into the table
             tableView.insertRows(at: [indexPath], with: .automatic)
         }
+        
     }
     
     // tableView Functions
     
+    // Sourced from: stackoverflow.com/questions/19791762/ios-change-navigation-bar-title-font-and-color
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        
+        header.textLabel?.font = UIFont(name: "Futura Medium", size: 19)
+        
+        view.tintColor = UIColor.systemGray5
+        header.textLabel?.textColor = UIColor.systemYellow
+        
+        if section == 0 {
+            view.tintColor = UIColor.systemYellow
+            header.textLabel?.textColor = UIColor.black
+        } else if section == 10 {
+            view.tintColor = UIColor.red
+            header.textLabel?.textColor = UIColor.black
+        }
+    }
+ 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movieStore.allMovies[section].count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return String(10 - section) + "/10"
+        if movieStore.allMovies[section].isEmpty {
+            return nil
+        } else {
+            return String(10 - section) + "/10"
+        }
+        
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -193,7 +219,19 @@ class MoviesViewController: UITableViewController {
     }
     
     override func sectionIndexTitles(for: UITableView) -> [String]? {
-        return movieStore.sectionIndexTitles
+        var titleList: [String] = []
+        var title: Int
+        
+        for i in 0..<movieStore.allMovies.count {
+            if !(movieStore.allMovies[i].isEmpty) {
+                title = 10 - i
+                titleList.append("\(title)")
+            }
+        }
+        
+        return titleList
+        
+//        return movieStore.sectionIndexTitles
     }
     
     override func viewDidLoad() {
@@ -216,6 +254,7 @@ class MoviesViewController: UITableViewController {
                     let movie = movieStore.allMovies[section][row]
                     let detailViewController = segue.destination as! DetailViewController
                     detailViewController.movie = movie
+                    detailViewController.movieStore = movieStore
                     detailViewController.imageStore = imageStore
                 }
             }
@@ -226,6 +265,7 @@ class MoviesViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         
         tableView.reloadData()
     }

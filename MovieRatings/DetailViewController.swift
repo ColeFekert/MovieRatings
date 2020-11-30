@@ -18,18 +18,120 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     
+    var movieStore: MovieStore!
+    var imageStore: ImageStore!
+    
     var movie: Movie! {
         didSet {
             navigationItem.title = movie.title
         }
     }
     
-    var imageStore: ImageStore!
+    @IBAction func removeEntry(_ sender: UIBarButtonItem) {
+        let title = "Delete \(movie.title)?"
+        let message = "Are you sure you want to delete this movie?"
+        
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "I changed my mind...", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        let deleteMessages = ["Hasta la vista, baby.", "Get off my plane!", "Consider that a divorce.", "I expect you to die.", "You killed my father, prepare to die.", "See you at the party, Richter!", "Bingo!", "A man's got to know his limitations.", "Adriaaaaaaaaaan!", "Party's Over!", "Game over man! Game over!", "That's right, Dude. 100% certain.", "Certain DEATH!"]
+        
+        let idx = arc4random_uniform(UInt32(deleteMessages.count))
+        let randomTitle = deleteMessages[Int(idx)]
+        
+        let deleteAction = UIAlertAction(title: randomTitle, style: .destructive, handler: {
+            (action) -> Void in
+            
+            // Remove the movie's image from the image store
+            self.imageStore.deleteImage(forKey: self.movie.movieKey)
+            
+            // Remove the movie from the store
+            self.movieStore.removeMovie(self.movie)
+            
+            // Force back to the tableView
+            self.navigationController?.popViewController(animated: true)
+        })
+        ac.addAction(deleteAction)
+        
+        // Present the alert controller
+        present(ac, animated: true, completion: nil)
+    }
+    
+    @IBAction func clearEntry(_ sender: UIBarButtonItem) {
+        let title = "Clear \(movie.title)?"
+        let message = "Are you sure you want to clear this entry?"
+        
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let cancelAction = UIAlertAction(title: "I changed my mind...", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        let clearMessages = ["Wipe it!", "Obliterate the data!", "Reset to factory settings", "Start fresh", "Clean the slate"]
+        
+        let idx = arc4random_uniform(UInt32(clearMessages.count))
+        let randomTitle = clearMessages[Int(idx)]
+        
+        let clearAction = UIAlertAction(title: randomTitle, style: .destructive, handler: {
+            (action) -> Void in
+            self.titleField.text = ""
+            self.yearField.text = ""
+            self.ratingField.text = ""
+            self.whatsGoodField.text = ""
+            self.whatsBadField.text = ""
+            self.whoWatchedField.text = ""
+    
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            let dateString = dateFormatter.string(from: Date())
+    
+            self.dateLabel.text = dateString
+    
+            // Get the movieKey
+            let key = self.movie.movieKey
+    
+            // If there's an associated image with the movie, remove it
+            self.imageStore.deleteImage(forKey: key)
+    
+            self.imageView.image = nil
+        })
+        ac.addAction(clearAction)
+        
+        // Present the alert controller
+        present(ac, animated: true, completion: nil)
+    }
     
     @IBAction func removePicture(_ sender: UIBarButtonItem) {
-        imageView.image = nil
-        
-        imageStore.deleteImage(forKey: movie.movieKey)
+        if imageView.image != nil {
+            let title = "Remove image?"
+            let message = "Are you sure you want to remove the image?"
+            
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            let cancelAction = UIAlertAction(title: "I changed my mind...", style: .cancel, handler: nil)
+            ac.addAction(cancelAction)
+            
+            let deleteMessages = ["Hasta la vista, baby.", "Get off my plane!", "Consider that a divorce.", "I expect you to die.", "You killed my father, prepare to die.", "See you at the party, Richter!", "Bingo!", "A man's got to know his limitations.", "Adriaaaaaaaaaan!", "Party's Over!", "Game over man! Game over!", "That's right, Dude. 100% certain.", "Certain DEATH!"]
+            
+            let idx = arc4random_uniform(UInt32(deleteMessages.count))
+            let randomTitle = deleteMessages[Int(idx)]
+            
+            let deleteAction = UIAlertAction(title: randomTitle, style: .destructive, handler: {
+                (action) -> Void in
+                
+                // Remove the movie's image from the image store
+                self.imageStore.deleteImage(forKey: self.movie.movieKey)
+                
+                self.imageView.image = nil
+                
+            })
+            ac.addAction(deleteAction)
+            
+            // Present the alert controller
+            present(ac, animated: true, completion: nil)
+        }
     }
     
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
@@ -109,15 +211,21 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         view.endEditing(true)
         
         // Save changes to movie
-        movie.title = titleField.text ?? ""
+        movie.title = titleField.text ?? "Untitled"
         
         if let yearText = yearField.text, let year = numberFormatter.number(from: yearText) {
             movie.year = year.intValue
         } else {
-            movie.year = 1919
+            movie.year = 1920
         }
         if let ratingText = ratingField.text, let rating = numberFormatter.number(from: ratingText) {
-            movie.changeRating(desiredRating: rating.intValue)
+            if rating.intValue > 10 {
+                movie.changeRating(desiredRating: 10)
+            } else if rating.intValue < 0 {
+                movie.changeRating(desiredRating: 0)
+            } else {
+                movie.changeRating(desiredRating: rating.intValue)
+            }
         } else {
             movie.changeRating(desiredRating: 5)
         }
